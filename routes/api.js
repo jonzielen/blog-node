@@ -1,7 +1,11 @@
+var mongoose = require('mongoose');
 var express = require('express');
 var router = express.Router();
 
 var List = require('../models/list');
+
+mongoose.set('debug', true);
+mongoose.connect('mongodb://localhost/lists');
 
 /* GET api page. */
 router.get('/', function(req, res, next) {
@@ -18,7 +22,7 @@ router.get('/', function(req, res, next) {
 
 /* add to db */
 router.get('/add', function(req, res, next) {
-    res.render('add-blog', { title: '0+' });
+    res.render('add-name', { title: '0+' });
 }).post('/add', function(req, res, next) {
     var list = new List(); // create a new instance of the List model
     list.name = req.body.email; // set the list name (comes from the request)
@@ -31,6 +35,7 @@ router.get('/add', function(req, res, next) {
         res.json({
             message: req.body.email+" added to the database."
         });
+        mongoose.disconnect();
     });
 });
 
