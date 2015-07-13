@@ -29,7 +29,6 @@ router.get('/data/feed', function(req, res, next) {
 /* GET individual post */
 router.get('/:url', function(req, res, next) {
     var url = req.params.url;
-    console.log(url);
 
     // get all
     BlogPost.findOne({"url":url}, function(err, post) {
