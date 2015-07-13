@@ -9,8 +9,16 @@ mongoose.createConnection('mongodb://localhost/blogPosts');
 
 /* GET api page. */
 router.get('/', function(req, res, next) {
-    res.render('blog', {
-        title: 'blog'
+    BlogPost.find({}, function(err, post) {
+      if (err) throw err;
+
+      res.render('blog', {
+          title: 'blog',
+          data: post
+      });
+    //   res.jsonp({
+    //       data: post
+    //   });
     });
 });
 
@@ -34,7 +42,7 @@ router.get('/:url', function(req, res, next) {
     BlogPost.findOne({"url":url}, function(err, post) {
       if (err) throw err;
 
-      res.render('blog', {
+      res.render('blog-post', {
           title: post.title,
           body: post.body,
           date: post.date
