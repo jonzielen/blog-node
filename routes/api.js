@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
 /* add to db */
 router.get('/add', function(req, res, next) {
     res.render('add-blog', { title: '0+' });
-}).post('/api/add', function(req, res, next) {
+}).post('/add', function(req, res, next) {
     var list = new List(); // create a new instance of the List model
     list.name = req.body.email; // set the list name (comes from the request)
 
