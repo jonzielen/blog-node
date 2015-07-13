@@ -14,13 +14,29 @@ router.get('/', function(req, res, next) {
     });
 });
 
-/* GET api page. */
-router.get('/feed', function(req, res, next) {
+/* GET feed */
+router.get('/data/feed', function(req, res, next) {
     // get all
     BlogPost.find({}, function(err, post) {
       if (err) throw err;
 
       res.jsonp({
+          data: post
+      });
+    });
+});
+
+/* GET individual post */
+router.get('/:url', function(req, res, next) {
+    var url = req.params.url;
+    console.log(url);
+
+    // get all
+    BlogPost.findOne({"url":url}, function(err, post) {
+      if (err) throw err;
+
+      res.jsonp({
+          urlSearched: url,
           data: post
       });
     });
