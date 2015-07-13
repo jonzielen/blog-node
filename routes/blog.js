@@ -5,11 +5,17 @@ var router = express.Router();
 var BlogPost = require('../models/blog-post');
 
 mongoose.set('debug', true);
-//mongoose.connect('mongodb://localhost/blogPosts');
 mongoose.createConnection('mongodb://localhost/blogPosts');
 
 /* GET api page. */
 router.get('/', function(req, res, next) {
+    res.render('blog', {
+        title: 'blog'
+    });
+});
+
+/* GET api page. */
+router.get('/feed', function(req, res, next) {
     // get all
     BlogPost.find({}, function(err, post) {
       if (err) throw err;
