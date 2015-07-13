@@ -9,7 +9,7 @@ mongoose.set('debug', true);
 mongoose.connect('mongodb://localhost/lists');
 
 var routes = require('./routes/index');
-var routes = require('./routes/api');
+var api = require('./routes/api');
 var users = require('./routes/users');
 
 var app = express();
@@ -27,6 +27,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use('/api', api);
 app.use('/users', users);
 
 // catch 404 and forward to error handler
