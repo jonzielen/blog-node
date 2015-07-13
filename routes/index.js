@@ -6,6 +6,7 @@ var List = require('../models/list');
 /* GET home page. */
 router.get('/', function(req, res, next) {
     res.render('index', {
+        homepage: true,
         title: '00',
         pageDescription: 'test description',
     });
