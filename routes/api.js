@@ -14,7 +14,6 @@ router.get('/', function(req, res, next) {
       if (err) throw err;
 
       res.jsonp({
-          title: '00',
           data: list
       });
     });
@@ -22,7 +21,10 @@ router.get('/', function(req, res, next) {
 
 /* add to db */
 router.get('/add', function(req, res, next) {
-    res.render('add-name', { title: '0+' });
+    res.render('add-name', {
+        title: 'add',
+        pageDescription: 'add post',
+    });
 }).post('/add', function(req, res, next) {
     var list = new List(); // create a new instance of the List model
     list.name = req.body.email; // set the list name (comes from the request)

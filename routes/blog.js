@@ -14,6 +14,7 @@ router.get('/', function(req, res, next) {
 
       res.render('blog', {
           title: 'blog',
+          pageDescription: 'test description',
           data: post
       });
     //   res.jsonp({
@@ -43,6 +44,7 @@ router.get('/:url', function(req, res, next) {
       if (err) throw err;
 
       res.render('blog-post', {
+          pageDescription: 'Blogs are good!',
           title: post.title,
           body: post.body,
           date: post.date
@@ -52,7 +54,10 @@ router.get('/:url', function(req, res, next) {
 
 /* add to db */
 router.get('/post/add', function(req, res, next) {
-    res.render('add-blog', { title: 'add' });
+    res.render('add-blog', {
+        title: 'add',
+        pageDescription: 'Add blog post.'
+    });
 }).post('/post/add', function(req, res, next) {
     var post = new BlogPost(); // create a new instance of the Blog Post model
 

@@ -6,10 +6,13 @@ var List = require('../models/list');
 /* GET home page. */
 router.get('/', function(req, res, next) {
     res.render('index', {
-        title: '00'
+        title: '00',
+        pageDescription: 'test description',
     });
 }).post('/', function(req, res, next) {
-  res.render('index', { title: req.body.email });
+  res.render('index', {
+      title: req.body.email
+  });
 });
 
 module.exports = router;
