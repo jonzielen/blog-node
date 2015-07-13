@@ -2,5 +2,11 @@ extends layout
 
 block content
     h1= title
+    h2 read all the great blog posts
 
-    pre= data
+    for post in data
+        h3
+            a(href= '/blog/'+post.url) post.title
+        h4= post.date
+        div= post.body
+        a(href= '/blog/'+post.url) Read More >
