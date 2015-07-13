@@ -35,17 +35,18 @@ router.get('/:url', function(req, res, next) {
     BlogPost.findOne({"url":url}, function(err, post) {
       if (err) throw err;
 
-      res.jsonp({
-          urlSearched: url,
-          data: post
+      res.render('blog', {
+          title: post.title,
+          body: post.body,
+          date: post.date
       });
     });
 });
 
 /* add to db */
-router.get('/add', function(req, res, next) {
+router.get('/post/add', function(req, res, next) {
     res.render('add-blog', { title: 'add' });
-}).post('/add', function(req, res, next) {
+}).post('/post/add', function(req, res, next) {
     var post = new BlogPost(); // create a new instance of the Blog Post model
 
     post.title = req.body.title; // set the post title (comes from the request)

@@ -3,7 +3,7 @@ extends layout
 block content
     h1= title
 
-    form(name="blog-post", action="/blog/add", method="post", class="add-blog-post-form")
+    form(name="blog-post", action="/blog/post/add", method="post", class="add-blog-post-form")
         label(for="title") Title:
             input(type="text", name="title")
         label(for="date") Date:
