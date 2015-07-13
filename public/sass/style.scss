@@ -1,3 +1,6 @@
+@import "_normalize.scss";
+@import "_mixins.scss";
+
 /*
  * What follows is the result of much research on cross-browser styling.
  * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
@@ -79,18 +82,36 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-body {
-    padding: 0;
-    margin: 0;
+ body {
+   background-color: #ccc;
+   @include padding-margin(0,0);
 }
-h1,
-h2,
-h3,
-h4,
-h5 {
-    padding: 0;
-    margin: 0;
+
+h1,h2,h3,h4,h5,h5 {
+    @include padding-margin(0,0);
 }
+p, ul {
+    @include padding-margin(0 0 6px,0);
+}
+
+.wrapper {
+    max-width:1200px;
+    margin:0 auto;
+}
+
+header {
+    #main-nav {
+        ul {
+           @include padding-margin(0,0);
+
+           li {
+            @include padding-margin(0,0 4px);
+            display:inline-block;
+           }
+        }
+    }
+}
+
 .add-blog-post-form {
     max-width: 400px;
     label {

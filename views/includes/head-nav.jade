@@ -1,0 +1,10 @@
+mixin link(href, name)
+  li
+    a(href=href)&attributes(attributes)= name
+
+nav#main-nav
+    ul
+        if !homepage
+            +link('/', 'home')(class="btn")
+
+            +link('/blog', 'blog')(class="btn")
