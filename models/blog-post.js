@@ -7,7 +7,9 @@ var userSchema = new Schema({
   title: String,
   date: String,
   body: String,
-  url: String
+  url: String,
+  active: Boolean,
+  created: Date
 });
 
 // the schema is useless so far

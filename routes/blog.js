@@ -44,7 +44,9 @@ router.get('/:url', function(req, res, next) {
           pageDescription: 'Blogs are good!',
           title: post.title,
           body: post.body,
-          date: post.date
+          date: post.date,
+          active: post.active,
+          created: Date.now
       });
     });
 });
@@ -62,7 +64,8 @@ router.get('/:url/edit', function(req, res, next) {
           title: post.title,
           body: post.body,
           date: post.date,
-          url: post.url
+          url: post.url,
+          active: post.active
       });
     });
 }).post('/:url/edit', function(req, res, next) {
@@ -75,7 +78,8 @@ router.get('/:url/edit', function(req, res, next) {
             title: req.body.title,
             body: req.body.body,
             date: req.body.date,
-            url: req.body.url
+            url: req.body.url,
+            active: req.body.active
         },
         function(err, post) {
             if (err) throw err;
@@ -102,6 +106,7 @@ router.get('/post/add', function(req, res, next) {
     post.date = req.body.date; // set the post date (comes from the request)
     post.body = req.body.body; // set the post body (comes from the request)
     post.url = req.body.url; // set the post url (comes from the request)
+    post.active = req.body.active; // set the post url (comes from the request)
 
     // save the list and check for errors
     post.save(function(err) {
