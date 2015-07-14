@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    h1= title
+    h3= date
+    div !{body}
+    h5= active
+    
+    form(name="blog-post", action="/blog/#{url}/delete", method="post", class="form")
+        label(for="url") Url:
+        input(type="hidden", name="url" value= url)
+        button(type="submit") delete

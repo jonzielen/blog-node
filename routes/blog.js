@@ -90,7 +90,6 @@ router.get('/:url/edit', function(req, res, next) {
     );
 
     res.redirect('/blog/'+req.body.url);
-
 });
 
 /* add to db */
@@ -119,6 +118,39 @@ router.get('/post/add', function(req, res, next) {
         });
     });
     //mongoose.disconnect();
+});
+
+/* delete individual post */
+router.get('/:url/delete', function(req, res, next) {
+    var url = req.params.url;
+
+    // get all
+    BlogPost.findOne({"url":url}, function(err, post) {
+      if (err) throw err;
+
+      res.render('delete-blog-post', {
+          pageDescription: 'Blogs are good!',
+          title: post.title,
+          body: post.body,
+          date: post.date,
+          url: post.url,
+          active: post.active
+      });
+    });
+}).post('/:url/delete', function(req, res, next) {
+    var url = req.params.url;
+
+    BlogPost.findOneAndRemove(
+        {"url":url},
+        function(err, post) {
+            if (err) throw err;
+
+            // we have the updated user returned to us
+            console.log(post);
+        }
+    );
+
+    res.redirect('/blog');
 });
 
 module.exports = router;
