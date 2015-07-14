@@ -17,9 +17,6 @@ router.get('/', function(req, res, next) {
           pageDescription: 'test description',
           data: post
       });
-    //   res.jsonp({
-    //       data: post
-    //   });
     });
 });
 
@@ -50,6 +47,46 @@ router.get('/:url', function(req, res, next) {
           date: post.date
       });
     });
+});
+
+/* GET individual post */
+router.get('/:url/edit', function(req, res, next) {
+    var url = req.params.url;
+
+    // get all
+    BlogPost.findOne({"url":url}, function(err, post) {
+      if (err) throw err;
+
+      res.render('edit-blog-post', {
+          pageDescription: 'Blogs are good!',
+          title: post.title,
+          body: post.body,
+          date: post.date,
+          url: post.url
+      });
+    });
+}).post('/:url/edit', function(req, res, next) {
+    var url = req.params.url;
+
+    BlogPost.findOneAndUpdate(
+        {"url":url},
+        {
+            pageDescription: 'testtttt???',
+            title: req.body.title,
+            body: req.body.body,
+            date: req.body.date,
+            url: req.body.url
+        },
+        function(err, post) {
+            if (err) throw err;
+
+            // we have the updated user returned to us
+            console.log(post);
+        }
+    );
+
+    res.redirect('/blog/'+req.body.url);
+
 });
 
 /* add to db */

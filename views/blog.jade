@@ -6,7 +6,7 @@ block content
 
     for post in data
         h3
-            a(href= '/blog/'+post.url) post.title
+            a(href= '/blog/'+post.url)= post.title
         h4= post.date
         div= post.body
         a(href= '/blog/'+post.url) Read More >
