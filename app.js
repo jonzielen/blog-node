@@ -5,10 +5,13 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var nodemailer = require('nodemailer');
+var smtpTransport = require('nodemailer-smtp-transport');
 
 var routes = require('./routes/index');
 var api = require('./routes/api');
 var blog = require('./routes/blog');
+var emailer = require('./routes/emailer');
 var users = require('./routes/users');
 
 var app = express();
@@ -28,6 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/api', api);
 app.use('/blog', blog);
+app.use('/emailer', emailer);
 app.use('/users', users);
 
 // catch 404 and forward to error handler

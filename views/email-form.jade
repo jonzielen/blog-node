@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    h1= title
+
+    form(name="emailer", action="/emailer", method="post", class="form")
+        label(for="to") To:
+        input(type="text", name="to")
+            
+        label(for="from") From:
+        input(type="text", name="From")
+            
+        label(for="title") Title:
+        input(type="text", name="title")
+    
+        label(for="body") Body:
+        textarea(name="body")
+            
+        button(type="submit") submit
